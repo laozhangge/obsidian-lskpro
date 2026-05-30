@@ -16,6 +16,74 @@ export class LskyProUploader {
     this.app = app;
   }
 
+  private getApiBaseUrl(): string {
+    return this.settings.uploadServer.endsWith("/")
+      ? this.settings.uploadServer
+      : this.settings.uploadServer + "/";
+  }
+
+  async testConnection(): Promise<{success: boolean, message: string, name?: string}> {
+    const url = this.getApiBaseUrl() + "api/v1/profile";
+    try {
+      const response = await fetch(url, {
+        method: "GET",
+        headers: {
+          "Authorization": this.lskyToken,
+          "Accept": "application/json",
+        },
+      });
+      const data = await response.json();
+      if (data.status) {
+        return { success: true, message: "连接成功", name: data.data?.name };
+      }
+      return { success: false, message: data.message || "连接失败" };
+    } catch (error) {
+      return { success: false, message: "网络错误: " + String(error) };
+    }
+  }
+
+  async getStrategies(): Promise<{id: number, name: string}[]> {
+    const url = this.getApiBaseUrl() + "api/v1/strategies";
+    try {
+      const response = await fetch(url, {
+        method: "GET",
+        headers: {
+          "Authorization": this.lskyToken,
+          "Accept": "application/json",
+        },
+      });
+      const data = await response.json();
+      if (data.status && data.data?.strategies) {
+        return data.data.strategies.map((s: any) => ({ id: s.id, name: s.name }));
+      }
+      return [];
+    } catch (error) {
+      console.error("获取策略列表失败:", error);
+      return [];
+    }
+  }
+
+  async getAlbums(): Promise<{id: number, name: string}[]> {
+    const url = this.getApiBaseUrl() + "api/v1/albums";
+    try {
+      const response = await fetch(url, {
+        method: "GET",
+        headers: {
+          "Authorization": this.lskyToken,
+          "Accept": "application/json",
+        },
+      });
+      const data = await response.json();
+      if (data.status && data.data?.data) {
+        return data.data.data.map((a: any) => ({ id: a.id, name: a.name }));
+      }
+      return [];
+    } catch (error) {
+      console.error("获取相册列表失败:", error);
+      return [];
+    }
+  }
+
   //上传请求配置
   getRequestOptions(file: File) {
     let headers = new Headers();
@@ -27,6 +95,12 @@ export class LskyProUploader {
     if (this.settings.strategy_id) {
       formdata.append("strategy_id", this.settings.strategy_id);
     }
+    if (this.settings.album_id) {
+      formdata.append("album_id", this.settings.album_id);
+    }
+    const perm = this.settings.permission ?? 1;
+    formdata.append("permission", String(perm));
+    formdata.append("is_public", String(perm));
 
     return {
       method: "POST",

@@ -28,4 +28,13 @@ export default {
   "Delete source file after you upload file": "上传文件后移除源文件",
   "Delete source file in ob assets after you upload file.":
     "上传文件后移除在ob附件文件夹中的文件",
+  "Test Connection": "测试连接",
+  "Test Connection Description": "点击测试 API 地址和 Token 是否正确",
+  "Image Permission": "图片权限",
+  "Public - visible to all": "公开 - 所有人可见",
+  "Private - only visible to you": "私有 - 仅自己可见",
+  "Storage Strategy": "存储策略",
+  "Default Strategy": "默认策略",
+  "Upload Album": "上传相册",
+  "No Album": "不指定相册",
 };
