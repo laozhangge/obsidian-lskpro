@@ -1,8 +1,8 @@
 {
   "name": "lskypro-auto-upload",
-  "version": "1.0.4",
+  "version": "2.0.0",
   "type": "module",
-  "description": "Auto upload images from clipboard to lskypro",
+  "description": "Obsidian 自动上传图片到兰空图床(LskyPro)插件",
   "main": "main.js",
   "scripts": {
     "dev": "rollup --config rollup.config.js -w",
@@ -14,7 +14,7 @@
     "upload",
     "auto"
   ],
-  "author": "nekoutarou",
+  "author": "老张博客",
   "license": "MIT",
   "devDependencies": {
     "@rollup/plugin-commonjs": "^24.1.0",
