@@ -1,6 +1,6 @@
 {
   "id": "lskypro-image-upload",
-  "name": "Image To Lskypro",
+  "name": "LskyPro Image Upload",
   "version": "2.0.0",
   "minAppVersion": "1.2.8",
   "description": "Obsidian 自动上传图片到兰空图床(LskyPro)插件",
