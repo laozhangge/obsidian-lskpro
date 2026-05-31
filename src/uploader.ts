@@ -10,8 +10,8 @@ export class LskyProUploader {
   constructor(settings: PluginSettings,app: App) {
     this.settings = settings;
     this.lskyUrl = this.settings.uploadServer.endsWith("/")
-      ? this.settings.uploadServer + "api/v1/upload"
-      : this.settings.uploadServer + "/api/v1/upload";
+      ? this.settings.uploadServer + "api/v2/upload"
+      : this.settings.uploadServer + "/api/v2/upload";
     this.lskyToken = "Bearer " + this.settings.token;
     this.app = app;
   }
@@ -93,7 +93,7 @@ export class LskyProUploader {
     let formdata = new FormData();
     formdata.append("file", file);
     if (this.settings.strategy_id) {
-      formdata.append("strategy_id", this.settings.strategy_id);
+      formdata.append("storage_id", this.settings.strategy_id);
     }
     if (this.settings.album_id) {
       formdata.append("album_id", this.settings.album_id);
@@ -124,7 +124,7 @@ export class LskyProUploader {
             return resolve({
               code: 0,
               msg: "success",
-              data: value.data?.links?.url,
+              data: value.data?.public_url,
               fullResult: [],
             });
           }
