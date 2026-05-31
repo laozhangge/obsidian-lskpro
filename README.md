@@ -1,77 +1,54 @@
-# Obsidian LskyPro Auto Upload Plugin
+# Obsidian LskyPro 图床插件
 
-This is a tool that supports uploading images directly to the image bed [Lsky](https://github.com/lsky-org/lsky-pro), based on [renmu123/obsidian-image-auto-upload-plugin](https://github.com/renmu123/obsidian-image-auto-upload-plugin.git) modification.
-**Remember to restart Obsidian after updating the plugin**
+Obsidian 自动上传图片到兰空图床(LskyPro)的插件。
 
-## What's New (this commit)
+> ⚠️ **说明**：该版本是在 [NekouTarou](https://github.com/NekouTarou) 版本基础上进行二次开发，增加了图片权限选择、存储策略选择、相册选择等功能。
 
-- Added a new command: `Upload all images - All notes in vault (reuse)`.
-  - Scans all Markdown notes in your vault and uploads local images, then replaces links with uploaded URLs.
-  - Reuses the existing `uploadAllFile(currentFile?: TFile)` method for each note to avoid duplicated logic.
-- Refactored `uploadAllFile` to accept a `TFile` parameter and run sequentially (`await`).
-  - When called for the active note, it uses the editor content and updates via the editor.
-  - When called for non-active notes, it reads the file from the vault and writes back with updated links.
-- Updated the existing "Upload all images" command to pass the active file to the refactored method.
+## 功能特性
 
-### How to use the new command
+- 📋 剪贴板粘贴自动上传图片
+- 🖱️ 拖拽图片自动上传
+- 📝 批量上传当前笔记中的所有图片
+- 📚 批量上传整个仓库中的所有图片
+- 📥 下载远程图片到本地
+- 🔐 图片权限设置（公开/私有）
+- 💾 存储策略选择
+- 📷 上传相册选择
+- 🔗 网络图片URL替换
+- ⚙️ 图片尺寸后缀设置
 
-1. Open the command palette (`Ctrl+P`).
-2. Run `Upload all images - All notes in vault (reuse)`.
-3. The plugin will iterate all `.md` files, upload local images, and replace references; a summary notice appears when done.
+## 安装
 
-Notes:
-- Local images are uploaded; handling of network images respects your current settings (`workOnNetWork` and black domain filters).
-- Relative and absolute paths are resolved consistently, same as the current-file command.
+1. 下载 `main.js` 和 `manifest.json` 文件
+2. 在 Obsidian 库的 `.obsidian/plugins/` 目录下创建新文件夹（如 `lskypro`）
+3. 将下载的文件放入该文件夹
+4. 在 Obsidian 设置 → 第三方插件中启用插件
 
-# Start
+## 配置
 
-1. Install the LskyPro image bed and configure it. For configuration, refer to [official website](https://www.lsky.pro/)
-2. Open the interface of LskyPro
-3. Use the authorization interface to obtain Token and record it
-4. Open the plug-in configuration item and set the LskyPro domain name (for example: https://lsky.xxx.com)
-5. Set LskyPro Token
-6. The storage policy ID is an optional configuration, and it is configured according to LskyPro's policy and its own requirements. If there is only one policy, it does not need to be set
+1. 在插件设置中填入兰空图床域名（如 `https://pic.example.com`）
+2. 填入 API Token
+3. 点击"测试连接"验证配置
+4. 选择存储策略和上传相册（可选）
+5. 设置图片权限（公开/私有）
 
-# Features
+## 使用方法
 
-## Upload when paste image
+### 自动上传
+- 粘贴图片时自动上传到图床
+- 拖拽图片到编辑器时自动上传
 
-It supports uploading directly when pasting pictures from the clipboard, and currently supports copying images in the system and uploading them directly.
-Support to control the upload of a single file by setting `frontmatter`, the default value is `true`, please set the value to `false` to control the shutdown
+### 手动上传
+- 使用命令面板（Ctrl/Cmd+P）搜索以下命令：
+  - `Upload all images` - 上传当前笔记中的所有图片
+  - `Download all images` - 下载笔记中的远程图片到本地
+  - `Upload all images in all notes (reuse)` - 批量上传所有笔记中的图片
 
-Support ".png", ".jpg", ".jpeg", ".bmp", ".gif", ".svg", ".tiff" (because it directly calls the LskyPro interface, theoretically the files supported by the image bed It will be all right)
+## 致谢
 
-```yaml
----
-image-auto-upload: true
----
-```
+- 原作者：[NekouTarou](https://github.com/NekouTarou)
+- 兰空图床：[LskyPro](https://www.lsky.pro/)
 
-## Upload all local images file by command
+## 许可证
 
-press ctrl+P and input upload all images(Upload all images-All images in the current file)，enter, then will auto upload all local images
-
-You can also process all notes at once with the new command:
-
-- Open the command palette and run: `Upload all images - All notes in vault (reuse)`
-- It will reuse the same logic per note and update links across the vault.
-
-The path resolution priority will be searched according to the priority in turn:
-
-1. Absolute path, refers to the absolute path based on the library
-2. Relative paths, starting with ./ or ../
-3. shortest possible form
-
-## download all internet to local
-
-press ctrl+P and input upload all images，enter, then will auto upload all local images
-
-## Support drag-and-drop
-
-Allow multiple file drag and drop
-
-
-# TODO
-
-# Thanks
-[renmu123/obsidian-image-auto-upload-plugin](https://github.com/renmu123/obsidian-image-auto-upload-plugin.git)
+MIT License
