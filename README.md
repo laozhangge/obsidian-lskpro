@@ -1,56 +1,69 @@
-# Obsidian LskyPro 图床插件
+# LskyPro Image Upload
 
-Obsidian 自动上传图片到兰空图床(LskyPro)的插件。
+Automatically upload images to [LskyPro](https://www.lsky.pro/) image hosting from your Obsidian vault. Supports clipboard paste, drag & drop, and batch upload.
 
-> ⚠️ **说明**：该版本是在 [NekouTarou](https://github.com/NekouTarou) 版本基础上进行二次开发，增加了图片权限选择、存储策略选择、相册选择等功能。
+通过 [LskyPro](https://www.lsky.pro/) API 自动上传图片到兰空图床，支持剪贴板粘贴、拖拽和批量上传。
 
-**当前版本**: 2.0.0
+> Based on [NekouTarou](https://github.com/NekouTarou)'s version, with additional features: image permission control, storage strategy selection, and album management.
 
-## 功能特性
+## Features
 
-- 📋 剪贴板粘贴自动上传图片
-- 🖱️ 拖拽图片自动上传
-- 📝 批量上传当前笔记中的所有图片
-- 📚 批量上传整个仓库中的所有图片
-- 📥 下载远程图片到本地
-- 🔐 图片权限设置（公开/私有）
-- 💾 存储策略选择
-- 📷 上传相册选择
-- 🔗 网络图片URL替换
-- ⚙️ 图片尺寸后缀设置
+- 📋 Auto-upload on clipboard paste
+- 🖱️ Auto-upload on drag & drop
+- 📝 Batch upload all images in current note
+- 📚 Batch upload all images in entire vault
+- 📥 Download remote images to local
+- 🔐 Image permission settings (public/private)
+- 💾 Storage strategy selection
+- 📷 Upload album selection
+- 🔗 Remote image URL replacement
+- ⚙️ Image size suffix settings
 
-## 安装
+## Installation
 
-1. 下载 `main.js` 和 `manifest.json` 文件
-2. 在 Obsidian 库的 `.obsidian/plugins/` 目录下创建新文件夹（如 `lskypro`）
-3. 将下载的文件放入该文件夹
-4. 在 Obsidian 设置 → 第三方插件中启用插件
+### From Community Plugins
 
-## 配置
+1. Open Obsidian Settings → Community plugins
+2. Search for "LskyPro Image Upload"
+3. Click Install, then Enable
 
-1. 在插件设置中填入兰空图床域名（如 `https://pic.example.com`）
-2. 填入 API Token
-3. 点击"测试连接"验证配置
-4. 选择存储策略和上传相册（可选）
-5. 设置图片权限（公开/私有）
+### Manual Installation
 
-## 使用方法
+1. Download `main.js`, `manifest.json`, and `styles.css` from the [latest release](https://github.com/laozhangge/obsidian-lskpro/releases/latest)
+2. Create a folder `lskypro-image-upload` in your vault's `.obsidian/plugins/` directory
+3. Copy the downloaded files into that folder
+4. Enable the plugin in Obsidian Settings → Community plugins
 
-### 自动上传
-- 粘贴图片时自动上传到图床
-- 拖拽图片到编辑器时自动上传
+## Configuration
 
-### 手动上传
-- 使用命令面板（Ctrl/Cmd+P）搜索以下命令：
-  - `Upload all images` - 上传当前笔记中的所有图片
-  - `Download all images` - 下载笔记中的远程图片到本地
-  - `Upload all images in all notes (reuse)` - 批量上传所有笔记中的图片
+1. Open plugin settings and enter your LskyPro server URL (e.g., `https://pic.example.com`)
+2. Enter your API Token
+3. Click "Test Connection" to verify
+4. (Optional) Select storage strategy and upload album
+5. (Optional) Set image permission (public/private)
 
-## 致谢
+## Usage
 
-- 原作者：[NekouTarou](https://github.com/NekouTarou)
-- 兰空图床：[LskyPro](https://www.lsky.pro/)
+### Automatic Upload
 
-## 许可证
+- **Paste**: Paste an image from clipboard → auto-uploaded to LskyPro
+- **Drag & Drop**: Drag an image file into the editor → auto-uploaded
+
+### Manual Commands
+
+Open the command palette (`Ctrl/Cmd + P`) and search for:
+
+| Command | Description |
+|---------|-------------|
+| `Upload all images` | Upload all local images in the current note |
+| `Download all images` | Download all remote images in the current note to local |
+| `Upload all images in all notes (reuse)` | Batch upload all images across the entire vault |
+
+## Credits
+
+- Original author: [NekouTarou](https://github.com/NekouTarou)
+- Image hosting: [LskyPro](https://www.lsky.pro/)
+
+## License
 
 MIT License
